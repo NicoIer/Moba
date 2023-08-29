@@ -1,5 +1,0 @@
-syntax = "proto3";
-
-message X{
-  int32  a = 1;
-}
