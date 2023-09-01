@@ -1,13 +1,12 @@
 {
-    "name": "Moba",
+    "name": "kcp2k",
     "rootNamespace": "",
     "references": [
-        "GUID:6806a62c384838046a3c66c44f06d75f",
-        "GUID:955667e7f8f884fc2893426d63c98435"
+        "GUID:30817c1a0e6d646d99c048fc403f5979"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
+    "allowUnsafeCode": true,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,

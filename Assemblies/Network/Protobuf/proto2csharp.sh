@@ -1,14 +1,12 @@
 # 递归的搜索当前目录下和下一级目录下的所有proto文件，并且生成对应的C#文件(不会递归)
-# 生成的C#文件会放在./Assemblies/Protobuf/下
 protoRoot="./"
-protocPath="../../../../../Protobuf/protoc"
+protocPath="../../../../../../Protobuf/protoc"
 
-# shellcheck disable=SC2045
-# shellcheck disable=SC2006
 
 # 反引号：告诉shell将其中的命令使用命令输出结果代替
 # 使用ls命令遍历文件及文件夹(TopOnly，没有路径)
-for name in `ls $protoRoot`
+# shellcheck disable=SC2045
+for name in $(ls $protoRoot)
 do
 	# 如果是文件夹并且存在
 	# test -d 判断是否为文件夹并且存在   test -f 是否为文件并且存在

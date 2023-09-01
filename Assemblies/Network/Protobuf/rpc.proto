@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+// 消息头 
+message RpcHead{
+  
+}
