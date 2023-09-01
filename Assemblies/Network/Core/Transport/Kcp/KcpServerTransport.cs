@@ -82,6 +82,16 @@ namespace Moba
             }
         }
 
+        public void TickOutgoing()
+        {
+            _server.TickOutgoing();
+        }
+
+        public void TickIncoming()
+        {
+            _server.TickIncoming();
+        }
+
         public override void Shutdown()
         {
         }

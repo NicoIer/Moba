@@ -32,6 +32,7 @@ namespace Moba
 
         // 关闭
         public abstract int GetMaxPacketSize(int channelId = Channels.Reliable);
+
         public abstract void Shutdown();
     }
 }
