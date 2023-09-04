@@ -5,11 +5,10 @@ namespace Moba
     [DisallowMultipleComponent]
     public class NetClient : NetManager
     {
-        public ClientTransport transport;
+        public ClientTransport transport = new KcpClientTransport(KcpUtil.defaultConfig, 24419);
 
         public override void Start()
         {
-            throw new System.NotImplementedException();
         }
 
         public override void Stop()

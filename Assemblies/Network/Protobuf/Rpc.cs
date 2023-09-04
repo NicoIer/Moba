@@ -22,32 +22,33 @@ public static partial class RpcReflection {
   static RpcReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CglycGMucHJvdG8iQgoJU2VydmVyUnBjEhIKCm1ldGhvZEhhc2gYASABKAQS",
-          "DwoHcGF5bG9hZBgCIAEoDBIQCghjbGllbnRJZBgDIAEoBCIwCglDbGllbnRS",
-          "cGMSEgoKbWV0aG9kSGFzaBgBIAEoBBIPCgdwYXlsb2FkGAIgASgMIkIKCVRh",
-          "cmdldFJwYxISCgptZXRob2RIYXNoGAEgASgEEg8KB3BheWxvYWQYAiABKAwS",
-          "EAoIY2xpZW50SWQYAyABKARiBnByb3RvMw=="));
+          "CglycGMucHJvdG8iIAoLUmVxdWVzdEhlYWQSEQoJbWVzc2FnZUlkGAEgASgN",
+          "IhsKC1Rlc3RSZXF1ZXN0EgwKBG5hbWUYAiABKAkiIQoMUmVzcG9uc2VIZWFk",
+          "EhEKCW1lc3NhZ2VJZBgBIAEoDWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::ServerRpc), global::ServerRpc.Parser, new[]{ "MethodHash", "Payload", "ClientId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ClientRpc), global::ClientRpc.Parser, new[]{ "MethodHash", "Payload" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::TargetRpc), global::TargetRpc.Parser, new[]{ "MethodHash", "Payload", "ClientId" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::RequestHead), global::RequestHead.Parser, new[]{ "MessageId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TestRequest), global::TestRequest.Parser, new[]{ "Name" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ResponseHead), global::ResponseHead.Parser, new[]{ "MessageId" }, null, null, null, null)
         }));
   }
   #endregion
 
 }
 #region Messages
-public sealed partial class ServerRpc : pb::IMessage<ServerRpc>
+/// <summary>
+/// 消息头 
+/// </summary>
+public sealed partial class RequestHead : pb::IMessage<RequestHead>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
 #endif
 {
-  private static readonly pb::MessageParser<ServerRpc> _parser = new pb::MessageParser<ServerRpc>(() => new ServerRpc());
+  private static readonly pb::MessageParser<RequestHead> _parser = new pb::MessageParser<RequestHead>(() => new RequestHead());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public static pb::MessageParser<ServerRpc> Parser { get { return _parser; } }
+  public static pb::MessageParser<RequestHead> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
@@ -60,92 +61,58 @@ public sealed partial class ServerRpc : pb::IMessage<ServerRpc>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ServerRpc() {
+  public RequestHead() {
     OnConstruction();
   }
 
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ServerRpc(ServerRpc other) : this() {
-    methodHash_ = other.methodHash_;
-    payload_ = other.payload_;
-    clientId_ = other.clientId_;
+  public RequestHead(RequestHead other) : this() {
+    messageId_ = other.messageId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ServerRpc Clone() {
-    return new ServerRpc(this);
+  public RequestHead Clone() {
+    return new RequestHead(this);
   }
 
-  /// <summary>Field number for the "methodHash" field.</summary>
-  public const int MethodHashFieldNumber = 1;
-  private ulong methodHash_;
+  /// <summary>Field number for the "messageId" field.</summary>
+  public const int MessageIdFieldNumber = 1;
+  private uint messageId_;
   /// <summary>
-  ///方法的hash值
+  /// 消息id
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ulong MethodHash {
-    get { return methodHash_; }
+  public uint MessageId {
+    get { return messageId_; }
     set {
-      methodHash_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "payload" field.</summary>
-  public const int PayloadFieldNumber = 2;
-  private pb::ByteString payload_ = pb::ByteString.Empty;
-  /// <summary>
-  ///方法的参数
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public pb::ByteString Payload {
-    get { return payload_; }
-    set {
-      payload_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-    }
-  }
-
-  /// <summary>Field number for the "clientId" field.</summary>
-  public const int ClientIdFieldNumber = 3;
-  private ulong clientId_;
-  /// <summary>
-  ///客户端id
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ulong ClientId {
-    get { return clientId_; }
-    set {
-      clientId_ = value;
+      messageId_ = value;
     }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
-    return Equals(other as ServerRpc);
+    return Equals(other as RequestHead);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool Equals(ServerRpc other) {
+  public bool Equals(RequestHead other) {
     if (ReferenceEquals(other, null)) {
       return false;
     }
     if (ReferenceEquals(other, this)) {
       return true;
     }
-    if (MethodHash != other.MethodHash) return false;
-    if (Payload != other.Payload) return false;
-    if (ClientId != other.ClientId) return false;
+    if (MessageId != other.MessageId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override int GetHashCode() {
     int hash = 1;
-    if (MethodHash != 0UL) hash ^= MethodHash.GetHashCode();
-    if (Payload.Length != 0) hash ^= Payload.GetHashCode();
-    if (ClientId != 0UL) hash ^= ClientId.GetHashCode();
+    if (MessageId != 0) hash ^= MessageId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -162,17 +129,9 @@ public sealed partial class ServerRpc : pb::IMessage<ServerRpc>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
-    if (MethodHash != 0UL) {
+    if (MessageId != 0) {
       output.WriteRawTag(8);
-      output.WriteUInt64(MethodHash);
-    }
-    if (Payload.Length != 0) {
-      output.WriteRawTag(18);
-      output.WriteBytes(Payload);
-    }
-    if (ClientId != 0UL) {
-      output.WriteRawTag(24);
-      output.WriteUInt64(ClientId);
+      output.WriteUInt32(MessageId);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -183,17 +142,9 @@ public sealed partial class ServerRpc : pb::IMessage<ServerRpc>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (MethodHash != 0UL) {
+    if (MessageId != 0) {
       output.WriteRawTag(8);
-      output.WriteUInt64(MethodHash);
-    }
-    if (Payload.Length != 0) {
-      output.WriteRawTag(18);
-      output.WriteBytes(Payload);
-    }
-    if (ClientId != 0UL) {
-      output.WriteRawTag(24);
-      output.WriteUInt64(ClientId);
+      output.WriteUInt32(MessageId);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -204,14 +155,8 @@ public sealed partial class ServerRpc : pb::IMessage<ServerRpc>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
     int size = 0;
-    if (MethodHash != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MethodHash);
-    }
-    if (Payload.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeBytesSize(Payload);
-    }
-    if (ClientId != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientId);
+    if (MessageId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MessageId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -220,18 +165,12 @@ public sealed partial class ServerRpc : pb::IMessage<ServerRpc>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void MergeFrom(ServerRpc other) {
+  public void MergeFrom(RequestHead other) {
     if (other == null) {
       return;
     }
-    if (other.MethodHash != 0UL) {
-      MethodHash = other.MethodHash;
-    }
-    if (other.Payload.Length != 0) {
-      Payload = other.Payload;
-    }
-    if (other.ClientId != 0UL) {
-      ClientId = other.ClientId;
+    if (other.MessageId != 0) {
+      MessageId = other.MessageId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -248,15 +187,7 @@ public sealed partial class ServerRpc : pb::IMessage<ServerRpc>
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
         case 8: {
-          MethodHash = input.ReadUInt64();
-          break;
-        }
-        case 18: {
-          Payload = input.ReadBytes();
-          break;
-        }
-        case 24: {
-          ClientId = input.ReadUInt64();
+          MessageId = input.ReadUInt32();
           break;
         }
       }
@@ -274,15 +205,7 @@ public sealed partial class ServerRpc : pb::IMessage<ServerRpc>
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
         case 8: {
-          MethodHash = input.ReadUInt64();
-          break;
-        }
-        case 18: {
-          Payload = input.ReadBytes();
-          break;
-        }
-        case 24: {
-          ClientId = input.ReadUInt64();
+          MessageId = input.ReadUInt32();
           break;
         }
       }
@@ -292,15 +215,15 @@ public sealed partial class ServerRpc : pb::IMessage<ServerRpc>
 
 }
 
-public sealed partial class ClientRpc : pb::IMessage<ClientRpc>
+public sealed partial class TestRequest : pb::IMessage<TestRequest>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
 #endif
 {
-  private static readonly pb::MessageParser<ClientRpc> _parser = new pb::MessageParser<ClientRpc>(() => new ClientRpc());
+  private static readonly pb::MessageParser<TestRequest> _parser = new pb::MessageParser<TestRequest>(() => new TestRequest());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public static pb::MessageParser<ClientRpc> Parser { get { return _parser; } }
+  public static pb::MessageParser<TestRequest> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
@@ -313,75 +236,55 @@ public sealed partial class ClientRpc : pb::IMessage<ClientRpc>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ClientRpc() {
+  public TestRequest() {
     OnConstruction();
   }
 
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ClientRpc(ClientRpc other) : this() {
-    methodHash_ = other.methodHash_;
-    payload_ = other.payload_;
+  public TestRequest(TestRequest other) : this() {
+    name_ = other.name_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ClientRpc Clone() {
-    return new ClientRpc(this);
+  public TestRequest Clone() {
+    return new TestRequest(this);
   }
 
-  /// <summary>Field number for the "methodHash" field.</summary>
-  public const int MethodHashFieldNumber = 1;
-  private ulong methodHash_;
-  /// <summary>
-  ///方法的hash值
-  /// </summary>
+  /// <summary>Field number for the "name" field.</summary>
+  public const int NameFieldNumber = 2;
+  private string name_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ulong MethodHash {
-    get { return methodHash_; }
+  public string Name {
+    get { return name_; }
     set {
-      methodHash_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "payload" field.</summary>
-  public const int PayloadFieldNumber = 2;
-  private pb::ByteString payload_ = pb::ByteString.Empty;
-  /// <summary>
-  ///方法的参数
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public pb::ByteString Payload {
-    get { return payload_; }
-    set {
-      payload_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
     }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
-    return Equals(other as ClientRpc);
+    return Equals(other as TestRequest);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool Equals(ClientRpc other) {
+  public bool Equals(TestRequest other) {
     if (ReferenceEquals(other, null)) {
       return false;
     }
     if (ReferenceEquals(other, this)) {
       return true;
     }
-    if (MethodHash != other.MethodHash) return false;
-    if (Payload != other.Payload) return false;
+    if (Name != other.Name) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override int GetHashCode() {
     int hash = 1;
-    if (MethodHash != 0UL) hash ^= MethodHash.GetHashCode();
-    if (Payload.Length != 0) hash ^= Payload.GetHashCode();
+    if (Name.Length != 0) hash ^= Name.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -398,13 +301,9 @@ public sealed partial class ClientRpc : pb::IMessage<ClientRpc>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
-    if (MethodHash != 0UL) {
-      output.WriteRawTag(8);
-      output.WriteUInt64(MethodHash);
-    }
-    if (Payload.Length != 0) {
+    if (Name.Length != 0) {
       output.WriteRawTag(18);
-      output.WriteBytes(Payload);
+      output.WriteString(Name);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -415,13 +314,9 @@ public sealed partial class ClientRpc : pb::IMessage<ClientRpc>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (MethodHash != 0UL) {
-      output.WriteRawTag(8);
-      output.WriteUInt64(MethodHash);
-    }
-    if (Payload.Length != 0) {
+    if (Name.Length != 0) {
       output.WriteRawTag(18);
-      output.WriteBytes(Payload);
+      output.WriteString(Name);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -432,11 +327,8 @@ public sealed partial class ClientRpc : pb::IMessage<ClientRpc>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
     int size = 0;
-    if (MethodHash != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MethodHash);
-    }
-    if (Payload.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeBytesSize(Payload);
+    if (Name.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -445,15 +337,12 @@ public sealed partial class ClientRpc : pb::IMessage<ClientRpc>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void MergeFrom(ClientRpc other) {
+  public void MergeFrom(TestRequest other) {
     if (other == null) {
       return;
     }
-    if (other.MethodHash != 0UL) {
-      MethodHash = other.MethodHash;
-    }
-    if (other.Payload.Length != 0) {
-      Payload = other.Payload;
+    if (other.Name.Length != 0) {
+      Name = other.Name;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -469,12 +358,8 @@ public sealed partial class ClientRpc : pb::IMessage<ClientRpc>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
-        case 8: {
-          MethodHash = input.ReadUInt64();
-          break;
-        }
         case 18: {
-          Payload = input.ReadBytes();
+          Name = input.ReadString();
           break;
         }
       }
@@ -491,12 +376,8 @@ public sealed partial class ClientRpc : pb::IMessage<ClientRpc>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
-        case 8: {
-          MethodHash = input.ReadUInt64();
-          break;
-        }
         case 18: {
-          Payload = input.ReadBytes();
+          Name = input.ReadString();
           break;
         }
       }
@@ -506,15 +387,15 @@ public sealed partial class ClientRpc : pb::IMessage<ClientRpc>
 
 }
 
-public sealed partial class TargetRpc : pb::IMessage<TargetRpc>
+public sealed partial class ResponseHead : pb::IMessage<ResponseHead>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
 #endif
 {
-  private static readonly pb::MessageParser<TargetRpc> _parser = new pb::MessageParser<TargetRpc>(() => new TargetRpc());
+  private static readonly pb::MessageParser<ResponseHead> _parser = new pb::MessageParser<ResponseHead>(() => new ResponseHead());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public static pb::MessageParser<TargetRpc> Parser { get { return _parser; } }
+  public static pb::MessageParser<ResponseHead> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
@@ -527,92 +408,58 @@ public sealed partial class TargetRpc : pb::IMessage<TargetRpc>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public TargetRpc() {
+  public ResponseHead() {
     OnConstruction();
   }
 
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public TargetRpc(TargetRpc other) : this() {
-    methodHash_ = other.methodHash_;
-    payload_ = other.payload_;
-    clientId_ = other.clientId_;
+  public ResponseHead(ResponseHead other) : this() {
+    messageId_ = other.messageId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public TargetRpc Clone() {
-    return new TargetRpc(this);
+  public ResponseHead Clone() {
+    return new ResponseHead(this);
   }
 
-  /// <summary>Field number for the "methodHash" field.</summary>
-  public const int MethodHashFieldNumber = 1;
-  private ulong methodHash_;
+  /// <summary>Field number for the "messageId" field.</summary>
+  public const int MessageIdFieldNumber = 1;
+  private uint messageId_;
   /// <summary>
-  ///方法的hash值
+  /// 消息id
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ulong MethodHash {
-    get { return methodHash_; }
+  public uint MessageId {
+    get { return messageId_; }
     set {
-      methodHash_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "payload" field.</summary>
-  public const int PayloadFieldNumber = 2;
-  private pb::ByteString payload_ = pb::ByteString.Empty;
-  /// <summary>
-  ///方法的参数
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public pb::ByteString Payload {
-    get { return payload_; }
-    set {
-      payload_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-    }
-  }
-
-  /// <summary>Field number for the "clientId" field.</summary>
-  public const int ClientIdFieldNumber = 3;
-  private ulong clientId_;
-  /// <summary>
-  ///客户端id
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public ulong ClientId {
-    get { return clientId_; }
-    set {
-      clientId_ = value;
+      messageId_ = value;
     }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
-    return Equals(other as TargetRpc);
+    return Equals(other as ResponseHead);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool Equals(TargetRpc other) {
+  public bool Equals(ResponseHead other) {
     if (ReferenceEquals(other, null)) {
       return false;
     }
     if (ReferenceEquals(other, this)) {
       return true;
     }
-    if (MethodHash != other.MethodHash) return false;
-    if (Payload != other.Payload) return false;
-    if (ClientId != other.ClientId) return false;
+    if (MessageId != other.MessageId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override int GetHashCode() {
     int hash = 1;
-    if (MethodHash != 0UL) hash ^= MethodHash.GetHashCode();
-    if (Payload.Length != 0) hash ^= Payload.GetHashCode();
-    if (ClientId != 0UL) hash ^= ClientId.GetHashCode();
+    if (MessageId != 0) hash ^= MessageId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -629,17 +476,9 @@ public sealed partial class TargetRpc : pb::IMessage<TargetRpc>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
-    if (MethodHash != 0UL) {
+    if (MessageId != 0) {
       output.WriteRawTag(8);
-      output.WriteUInt64(MethodHash);
-    }
-    if (Payload.Length != 0) {
-      output.WriteRawTag(18);
-      output.WriteBytes(Payload);
-    }
-    if (ClientId != 0UL) {
-      output.WriteRawTag(24);
-      output.WriteUInt64(ClientId);
+      output.WriteUInt32(MessageId);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -650,17 +489,9 @@ public sealed partial class TargetRpc : pb::IMessage<TargetRpc>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (MethodHash != 0UL) {
+    if (MessageId != 0) {
       output.WriteRawTag(8);
-      output.WriteUInt64(MethodHash);
-    }
-    if (Payload.Length != 0) {
-      output.WriteRawTag(18);
-      output.WriteBytes(Payload);
-    }
-    if (ClientId != 0UL) {
-      output.WriteRawTag(24);
-      output.WriteUInt64(ClientId);
+      output.WriteUInt32(MessageId);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -671,14 +502,8 @@ public sealed partial class TargetRpc : pb::IMessage<TargetRpc>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
     int size = 0;
-    if (MethodHash != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(MethodHash);
-    }
-    if (Payload.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeBytesSize(Payload);
-    }
-    if (ClientId != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientId);
+    if (MessageId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MessageId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -687,18 +512,12 @@ public sealed partial class TargetRpc : pb::IMessage<TargetRpc>
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void MergeFrom(TargetRpc other) {
+  public void MergeFrom(ResponseHead other) {
     if (other == null) {
       return;
     }
-    if (other.MethodHash != 0UL) {
-      MethodHash = other.MethodHash;
-    }
-    if (other.Payload.Length != 0) {
-      Payload = other.Payload;
-    }
-    if (other.ClientId != 0UL) {
-      ClientId = other.ClientId;
+    if (other.MessageId != 0) {
+      MessageId = other.MessageId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -715,15 +534,7 @@ public sealed partial class TargetRpc : pb::IMessage<TargetRpc>
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
         case 8: {
-          MethodHash = input.ReadUInt64();
-          break;
-        }
-        case 18: {
-          Payload = input.ReadBytes();
-          break;
-        }
-        case 24: {
-          ClientId = input.ReadUInt64();
+          MessageId = input.ReadUInt32();
           break;
         }
       }
@@ -741,15 +552,7 @@ public sealed partial class TargetRpc : pb::IMessage<TargetRpc>
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
         case 8: {
-          MethodHash = input.ReadUInt64();
-          break;
-        }
-        case 18: {
-          Payload = input.ReadBytes();
-          break;
-        }
-        case 24: {
-          ClientId = input.ReadUInt64();
+          MessageId = input.ReadUInt32();
           break;
         }
       }

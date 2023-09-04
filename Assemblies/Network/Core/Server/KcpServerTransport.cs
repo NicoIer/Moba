@@ -21,10 +21,10 @@ namespace Moba
             this.port = port;
             this._config = config;
             _server = new KcpServer(
-                (connectId) => OnConnected.Invoke(connectId),
-                (connectId, data, channel) => OnDataReceived.Invoke(connectId, data, KcpUtil.FromKcpChannel(channel)),
-                (connectionId) => OnDisconnected.Invoke(connectionId),
-                (connectionId, error, msg) => OnError.Invoke(connectionId, KcpUtil.ToTransportError(error), msg),
+                (connectId) => OnConnected?.Invoke(connectId),
+                (connectId, data, channel) => OnDataReceived?.Invoke(connectId, data, KcpUtil.FromKcpChannel(channel)),
+                (connectionId) => OnDisconnected?.Invoke(connectionId),
+                (connectionId, error, msg) => OnError?.Invoke(connectionId, KcpUtil.ToTransportError(error), msg),
                 this._config
             );
         }
