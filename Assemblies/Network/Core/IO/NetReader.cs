@@ -1,4 +1,5 @@
 // from Mirror NetworkReaderPool.cs
+
 using System;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -13,7 +14,7 @@ namespace Moba.IO
         {
             public static Func<NetReader, T> read;
         }
-        
+
         #region Static
 
         private static readonly Pool<NetReader> Pool = new Pool<NetReader>(() => new NetReader(new byte[] { }), 1000);
@@ -35,7 +36,7 @@ namespace Moba.IO
 
         public void Dispose() => Pool.Return(this);
 
-        
+
         /// <summary>
         /// 注册读取器
         /// </summary>
@@ -45,7 +46,7 @@ namespace Moba.IO
         {
             Reader<T>.read = reader;
         }
-        
+
         #endregion
 
         public const int AllocationLimit = 1024 * 1024 * 16; // 16MB * sizeof(T)
@@ -59,10 +60,8 @@ namespace Moba.IO
         public int Capacity => buffer.Count;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Return(NetReader reader)
-        {
-            Pool.Return(reader);
-        }
+        public static void Return(NetReader reader) => Pool.Return(reader);
+        
 
         private NetReader(ArraySegment<byte> segment)
         {
@@ -90,7 +89,7 @@ namespace Moba.IO
                 throw new EndOfStreamException(
                     $"ReadBlittable<{typeof(T)}> not enough data in buffer to read {size} bytes: {ToString()}");
             }
-            
+
             T value;
             fixed (byte* ptr = &buffer.Array[buffer.Offset + Position])
             {
@@ -122,7 +121,5 @@ namespace Moba.IO
 
             return readerDelegate(this);
         }
-
-
     }
 }
