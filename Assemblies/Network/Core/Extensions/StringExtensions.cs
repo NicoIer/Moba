@@ -1,3 +1,5 @@
+using System;
+
 namespace Moba
 {
     public static class StringExtensions
@@ -25,12 +27,15 @@ namespace Moba
         //     }
         //     return hash
         // }
-        
+
         // python版本
         // def GetStableHash(str):
         //     hash = 23
         //     for c in str:
         //         hash = hash * 31 + ord(c)
         //     return hash
+
+        public static string ToHexString(this ArraySegment<byte> segment) =>
+            BitConverter.ToString(segment.Array, segment.Offset, segment.Count);
     }
 }
