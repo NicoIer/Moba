@@ -1,6 +1,6 @@
 {
     "name": "Moba",
-    "rootNamespace": "",
+    "rootNamespace": "MOBA",
     "references": [
         "GUID:6806a62c384838046a3c66c44f06d75f",
         "GUID:955667e7f8f884fc2893426d63c98435"
