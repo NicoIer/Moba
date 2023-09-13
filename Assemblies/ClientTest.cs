@@ -1,4 +1,5 @@
 using System;
+using Google.Protobuf.Reflection;
 using Nico;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,15 +11,7 @@ namespace MOBA
         private void Start()
         {
             kcp2k.Log.Info = Debug.Log;
-            ClientManager.singleton.client.OnConnected += () =>
-            {
-                Debug.Log($" connected");
-            };
-            
-            ClientManager.singleton.client.OnDisconnected += () =>
-            {
-                Debug.Log($"disconnected");
-            };
+            ClientManager.singleton.client.Listen<CreateObjResponse>(OnCreateNetObj);
         }
 
         [Button]
@@ -34,16 +27,27 @@ namespace MOBA
         }
 
         [Button]
-        public void Ping()
+        public void CreateObj(Vector3 pos)
         {
-            PingMessage pingMessage = ProtoHandler.Get<PingMessage>();
-            pingMessage.ClientTime = DateTime.Now.ToUniversalTime().Ticks;
-            ClientManager.singleton.Send(pingMessage);
-            pingMessage.Return();
+            CreateObjRequest request = ProtoHandler.Get<CreateObjRequest>();
+            ProtoVector3 protoVector3 = ProtoHandler.Get<ProtoVector3>();
+            protoVector3.X = pos.x;
+            protoVector3.Y = pos.y;
+            protoVector3.Z = pos.z;
+            request.Pos = protoVector3;
+            ClientManager.singleton.Send(request);
         }
-        public void Update()
+        public void OnCreateNetObj(ServerMsg<CreateObjResponse> response)
         {
-            
+            CreateObjResponse msg = response.msg;
+            Debug.Log($"OnCreateNetObj,pos:{response.msg.Pos}");
+            GameObject netObj = new GameObject($"NetObj:{msg.ObjId}")
+            {
+                transform =
+                {
+                    position = new UnityEngine.Vector3(msg.Pos.X, msg.Pos.Y, msg.Pos.Z)
+                }
+            };
         }
     }
 }

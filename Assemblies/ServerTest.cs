@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Nico;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,44 +11,50 @@ namespace MOBA
         private void Start()
         {
             kcp2k.Log.Info = Debug.Log;
-            ServerManager.singleton.server.onConnected += (connectId) =>
-            {
-                Debug.Log($"connectId:{connectId} connected");
-            };
+            // ServerManager.singleton.server.onConnected += (connectId) =>
+            // {
+            //     Debug.Log($"connectId:{connectId} connected");
+            // };
+            //
+            // ServerManager.singleton.server.onDisconnected += (connectId) =>
+            // {
+            //     Debug.Log($"connectId:{connectId} disconnected");
+            // };
 
-            ServerManager.singleton.server.onDisconnected += (connectId) =>
-            {
-                Debug.Log($"connectId:{connectId} disconnected");
-            };
-        }
-
-        [Button]
-        public void StartServer()
-        {
             ServerManager.singleton.NetStart();
+            ServerManager.singleton.server.Listen<CreateObjRequest>(OnCreateNetObj);
+            ServerManager.singleton.server.Listen<MoveRequest>(OnMoveRequest);
         }
 
-        [Button]
-        public void StopServer()
+        private void OnDestroy()
         {
-            ServerManager.singleton.NetStop();
+            ServerManager.singleton.server.UnListen<CreateObjRequest>(OnCreateNetObj);
+            ServerManager.singleton.server.UnListen<MoveRequest>(OnMoveRequest);
         }
 
-        [Button]
-        public void Listen()
+        Dictionary<uint, GameObject> _netObjs = new Dictionary<uint, GameObject>();
+        public uint nextId = 0;
+
+        public void OnCreateNetObj(ClientMsg<CreateObjRequest> request)
         {
-            ServerManager.singleton.server.Listen<PingMessage>(OnPing);
+            CreateObjRequest msg = request.msg;
+            GameObject netObj = new GameObject($"NetObj:{nextId}")
+            {
+                transform =
+                {
+                    position = new UnityEngine.Vector3(msg.Pos.X, msg.Pos.Y, msg.Pos.Z)
+                }
+            };
+            _netObjs[nextId] = netObj;
+            ++nextId;
+            CreateObjResponse response = ProtoHandler.Get<CreateObjResponse>();
+            response.ObjId = nextId;
+            response.Pos = msg.Pos;
+            ServerManager.singleton.Send(request.connectId, response);
         }
 
-        [Button]
-        public void UnListen()
+        public void OnMoveRequest(ClientMsg<MoveRequest> request)
         {
-            ServerManager.singleton.server.UnListen<PingMessage>(OnPing);
-        }
-
-        public void OnPing(ClientMsg<PingMessage> ping)
-        {
-            Debug.Log($"{nameof(PingMessage)} form connectId:{ping.connectId} clientTime:{ping.msg.ClientTime}");
         }
     }
 }

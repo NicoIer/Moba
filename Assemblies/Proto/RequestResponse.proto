@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+
+message ProtoVector3 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message ProtoQuaternion {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+  float w = 4;
+}
+
+//移动请求 客户端请求服务端移动
+message MoveRequest {
+  uint32 objId = 1;
+  ProtoVector3 dir = 2;//移动方向
+}
+
+message MoveResponse {
+  uint32 objId = 1;
+  ProtoVector3 pos = 2;//移动后的位置
+}
+
+message CreateObjRequest{
+  ProtoVector3 pos = 2;
+}
+
+message CreateObjResponse{
+  uint32 objId = 1;
+  ProtoVector3 pos = 2;
+}
+
+message DestroyNetObj{
+  uint32 objId = 1;
+}
