@@ -2,8 +2,8 @@
     "name": "Moba",
     "rootNamespace": "MOBA",
     "references": [
-        "GUID:6806a62c384838046a3c66c44f06d75f",
-        "GUID:955667e7f8f884fc2893426d63c98435"
+        "GUID:a9e3b3a98240c46a69e2058de60c978b",
+        "GUID:2ccc4c0570b50438ba9730c643791592"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

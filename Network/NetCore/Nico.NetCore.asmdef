@@ -1,0 +1,16 @@
+{
+    "name": "Nico.NetCore",
+    "rootNamespace": "",
+    "references": [
+        "GUID:090baf0575fdd422c89e198119923f79"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

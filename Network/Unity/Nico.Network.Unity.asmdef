@@ -1,0 +1,16 @@
+{
+    "name": "Nico.Network.Unity",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a9e3b3a98240c46a69e2058de60c978b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
