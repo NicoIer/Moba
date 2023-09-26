@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Google.Protobuf;
+using UnityToolkit;
 
-namespace Nico
+namespace UnityToolkit
 {
     public struct ClientPack<T>
     {
@@ -128,7 +129,7 @@ namespace Nico
         #region Handler
         public void RegisterHandler<T>(Action<ClientPack<T>> handler) where T : IMessage<T>, new()
         {
-            int id = TypeId<T>.ID;
+            int id = TypeId<T>.StableId;
             if (!_handlers.ContainsKey(id))
             {
                 _handlers[id] = (connectId, data, channel) =>
@@ -150,7 +151,7 @@ namespace Nico
 
         public void UnRegisterHandler<T>(Action<ClientPack<T>> handler) where T : IMessage<T>, new()
         {
-            int id = TypeId<T>.ID;
+            int id = TypeId<T>.StableId;
             if (!_handlers.ContainsKey(id))
             {
                 return;

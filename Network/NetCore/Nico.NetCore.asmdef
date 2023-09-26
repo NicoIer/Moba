@@ -2,7 +2,8 @@
     "name": "Nico.NetCore",
     "rootNamespace": "",
     "references": [
-        "GUID:090baf0575fdd422c89e198119923f79"
+        "GUID:090baf0575fdd422c89e198119923f79",
+        "GUID:86f887b52ea9c49c38ae94592c962b3b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

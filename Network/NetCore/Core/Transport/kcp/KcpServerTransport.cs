@@ -2,7 +2,7 @@ using System;
 using System.Net;
 using kcp2k;
 
-namespace Nico
+namespace UnityToolkit
 {
     /// <summary>
     /// Kcp的服务器端传输

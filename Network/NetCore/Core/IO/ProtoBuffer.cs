@@ -1,7 +1,8 @@
 using System;
 using Google.Protobuf;
+using kcp2k;
 
-namespace Nico
+namespace UnityToolkit
 {
     /// <summary>
     ///  给Protobuf序列化提供的缓冲区

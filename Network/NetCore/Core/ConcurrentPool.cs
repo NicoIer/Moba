@@ -1,7 +1,7 @@
 using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
 
-namespace Nico
+namespace UnityToolkit
 {
     public class ConcurrentPool<T>
     {

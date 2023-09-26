@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Google.Protobuf;
+using UnityToolkit;
 
-namespace Nico
+namespace UnityToolkit
 {
     public struct ServerPack<T>
     {
@@ -130,7 +131,7 @@ namespace Nico
 
         public void RegisterHandler<T>(Action<ServerPack<T>> handler) where T : IMessage<T>, new()
         {
-            int id = TypeId<T>.ID;
+            int id = TypeId<T>.StableId;
 
             if (!_handlers.ContainsKey(id))
             {
@@ -152,7 +153,7 @@ namespace Nico
 
         public void UnRegisterHandler<T>(Action<ServerPack<T>> handler) where T : IMessage<T>, new()
         {
-            int id = TypeId<T>.ID;
+            int id = TypeId<T>.StableId;
             if (!_handlers.ContainsKey(id))
             {
                 return;

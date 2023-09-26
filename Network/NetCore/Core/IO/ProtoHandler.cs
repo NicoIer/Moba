@@ -1,7 +1,8 @@
 using System;
 using Google.Protobuf;
+using UnityToolkit;
 
-namespace Nico
+namespace UnityToolkit
 {
     public static class ProtoHandler
     {
@@ -35,7 +36,7 @@ namespace Nico
             {
                 PacketHeader header = Get<PacketHeader>();
 
-                header.Id = TypeId<T>.ID;
+                header.Id = TypeId<T>.StableId;
                 if (type != 0)
                 {
                     header.Type = type;

@@ -1,4 +1,4 @@
-namespace Nico
+namespace UnityToolkit
 {
     public enum TransportError : byte
     {

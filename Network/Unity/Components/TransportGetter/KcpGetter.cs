@@ -1,7 +1,7 @@
 using kcp2k;
 using UnityEngine;
 
-namespace Nico
+namespace UnityToolkit
 {
     public class KcpGetter : MonoBehaviour, IServerTransportGetter, IClientTransportGetter
     {

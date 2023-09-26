@@ -3,7 +3,7 @@ using Google.Protobuf;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Nico
+namespace UnityToolkit
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(IServerTransportGetter))]

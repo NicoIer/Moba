@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.LowLevel;
 using UnityEngine.PlayerLoop;
 
-namespace Nico
+namespace UnityToolkit
 {
     public static class NetworkLoop
     {

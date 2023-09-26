@@ -1,6 +1,6 @@
 using System;
 
-namespace Nico
+namespace UnityToolkit
 {
     public struct ExponentialMovingAverage
     {

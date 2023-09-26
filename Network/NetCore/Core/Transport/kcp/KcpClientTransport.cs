@@ -1,7 +1,7 @@
 using System;
 using kcp2k;
 
-namespace Nico
+namespace UnityToolkit
 {
     public class KcpClientTransport : ClientTransport
     {

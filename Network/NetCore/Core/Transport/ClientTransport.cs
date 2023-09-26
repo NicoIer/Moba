@@ -1,6 +1,6 @@
 using System;
 
-namespace Nico
+namespace UnityToolkit
 {
     public abstract class ClientTransport : INetTransport
     {

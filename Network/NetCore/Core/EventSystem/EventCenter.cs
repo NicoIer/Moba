@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Google.Protobuf;
 
-namespace Nico
+namespace UnityToolkit
 {
     public class EventCenter
     {
